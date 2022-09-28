@@ -2,6 +2,10 @@ from flask import Flask, request, render_template
 from conceptproof import getDirector
 app = Flask(__name__, template_folder='templates')
 
+if __name__ == '__main__':
+    app.debug = True
+    app.run()
+    
 @app.route('/', methods =["GET", "POST"])
 def getDirectorFrom():
     if request.method == 'POST':
@@ -9,6 +13,3 @@ def getDirectorFrom():
         return getDirector(movie)
     return render_template("form.html")
 
-if __name__ == '__main__':
-    app.debug = True
-    app.run()
